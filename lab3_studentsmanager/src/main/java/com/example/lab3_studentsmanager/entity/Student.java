@@ -1,35 +1,125 @@
+// Chức năng: Đại diện cho một sinh viên 
+// trong hệ thống quản lý sinh viên
 package com.example.lab3_studentsmanager.entity;
+import java.util.UUID;
 
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+
 @Entity
-@Table(name = "students") // Tên này phải trùng khớp chính xác với tên bảng trong SQL Server
+@Table(name = "students")
 public class Student {
 
+
     @Id
-    private int id;
-    private String name;
-    private int age;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
+    private UUID id;
+
+
+    @Column(name = "student_code")
+    private String studentCode;
+
+
+    @Column(name = "full_name")
+    private String fullName;
+
+
+    @Column(name = "email")
     private String email;
-    private String gender;
 
-    // --- BẮT BUỘC PHẢI TẠO GETTER VÀ SETTER ---
-    // (Nếu không có, Thymeleaf và Spring Boot sẽ không lấy được dữ liệu)
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    @Column(name = "phone")
+    private String phone;
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
 
-    public int getAge() { return age; }
-    public void setAge(int age) { this.age = age; }
+    @Column(name = "class_name")
+    private String className;
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
 
-    public String getGender() { return gender; }
-    public void setGender(String gender) { this.gender = gender; }
+    public Student() {
+    }
+
+
+    public Student(String studentCode, String fullName, String email, String phone, String className) {
+        this.studentCode = studentCode;
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.className = className;
+    }
+
+
+    public UUID getId() {
+        return id;
+    }
+
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+
+    public String getStudentCode() {
+        return studentCode;
+    }
+    public void setStudentCode(String studentCode) {
+        this.studentCode = studentCode;
+    }
+
+
+    public String getFullName() {
+        return fullName;
+    }
+
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+
+    public String getName() {
+        return fullName;
+    }
+
+
+    public void setName(String name) {
+        this.fullName = name;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+    public String getPhone() {
+        return phone;
+    }
+
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+
+    public String getClassName() {
+        return className;
+  }
+
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
 }

@@ -1,30 +1,56 @@
+// Chức năng: SERVICE: Lớp này đại diện cho tầng Service
+// (tầng xử lý nghiệp vụ) của ứng dụng quản lý sinh viên
 package com.example.lab3_studentsmanager.service;
-
-import com.example.lab3_studentsmanager.repository.StudentRepository;
-import com.example.lab3_studentsmanager.entity.Student;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.UUID;
+
+
+import org.springframework.stereotype.Service;
+
+
+import com.example.lab3_studentsmanager.entity.Student;
+import com.example.lab3_studentsmanager.repository.StudentRepository;
+
 
 @Service
 public class StudentService {
-    @Autowired
-    private StudentRepository repository;
 
-    public List<Student> getAllStudents() {
-        return repository.findAll();
+
+    private final StudentRepository studentRepository;
+
+
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
-    // Hàm tìm kiếm sinh viên
-    public List<Student> searchStudents(String keyword) {
-        if (keyword != null && !keyword.isEmpty()) {
-            return repository.findByNameContaining(keyword);
+
+    public List<Student> getAll() {
+        return studentRepository.findAll();
+    }
+
+
+    public List<Student> search(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return studentRepository.findAll();
         }
-        return repository.findAll();
+        String value = keyword.trim();
+        return studentRepository.findByStudentCodeContainingIgnoreCaseOrFullNameContainingIgnoreCaseOrEmailContainingIgnoreCaseOrPhoneContainingIgnoreCase(
+                value, value, value, value);
     }
 
-    // Hàm lấy chi tiết 1 sinh viên theo ID
-    public Student getStudentById(int id) {
-        return repository.findById(id).orElse(null);
+
+    public Student getById(UUID id) {
+        return studentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy sinh viên với id: " + id));
+    }
+
+
+    public Student save(Student student) {
+        return studentRepository.save(student);
+    }
+
+
+    public void delete(UUID id) {
+        studentRepository.deleteById(id);
     }
 }
