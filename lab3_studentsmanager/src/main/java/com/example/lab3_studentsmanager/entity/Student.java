@@ -84,15 +84,6 @@ public class Student {
     }
 
 
-    public String getName() {
-        return fullName;
-    }
-
-
-    public void setName(String name) {
-        this.fullName = name;
-    }
-
 
     public String getEmail() {
         return email;

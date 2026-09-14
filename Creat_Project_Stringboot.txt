@@ -1,0 +1,15 @@
+Bước 1: Bấm tổ hợp phím Ctrl + Shift + P → chọn Spring initializr: Create a Maven Project
+Bước 2: Chọn phiên bản Spring Boot (4.0.1)
+Bước 3: Chọn ngôn ngữ Java
+Bước 4: Group Id tên tổ chức (thay đổi nếu làm dự án thật)   --> VD com.example
+Bước 5: Tên dự án (input Artifact Id) → điền tên dự án mong muốn, ghi liền
+Bước 6: Input Package Name → chọn Enter để tiếp tục
+Bước 7: Jar
+Bước 8: Chọn java version (21)
+Bước 9: Chọn Spring Web Web
+Bước 10: Chọn như hình dependency
+Bước 11: Chọn thư mục lưu trữ dự án
+
+
+
+
