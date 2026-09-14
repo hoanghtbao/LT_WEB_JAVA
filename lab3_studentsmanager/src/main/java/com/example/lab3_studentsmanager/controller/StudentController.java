@@ -50,10 +50,9 @@ public class StudentController {
             @PathVariable UUID id,
             @RequestBody Student student) {
 
-        student.setId(id);
-
-        return studentService.save(student);
+        return studentService.update(id, student);
     }
+
 
     @DeleteMapping("/{id}")
     public void deleteStudent(@PathVariable UUID id) {

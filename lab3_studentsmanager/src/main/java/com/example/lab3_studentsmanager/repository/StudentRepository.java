@@ -19,6 +19,7 @@ public interface StudentRepository extends JpaRepository<Student, UUID> {
             String studentCode,
             String fullName,
             String email,
-            String phone);
+            String phone
+        );
 }
 

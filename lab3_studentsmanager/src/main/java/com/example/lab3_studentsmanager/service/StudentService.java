@@ -49,8 +49,19 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
+    public Student update(UUID id, Student studentDetails) {
+        Student existing = getById(id);
+        existing.setStudentCode(studentDetails.getStudentCode());
+        existing.setFullName(studentDetails.getFullName());
+        existing.setEmail(studentDetails.getEmail());
+        existing.setPhone(studentDetails.getPhone());
+        existing.setClassName(studentDetails.getClassName());
+        return studentRepository.save(existing);
+    }
+
 
     public void delete(UUID id) {
         studentRepository.deleteById(id);
     }
 }
+
